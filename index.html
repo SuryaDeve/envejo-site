@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Envejo Design Hub — Chennai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #162435;
+    --navy-light: #1E3248;
+    --gold: #C8A96E;
+    --gold-light: #DFC18E;
+    --gold-pale: #F5EFD8;
+    --cream: #FAF7F0;
+    --muted: #8A9AAB;
+    --text-light: #D4C9B0;
+    --white: #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-geo {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  .hero-geo circle, .hero-geo line { stroke: var(--gold); }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 8vw, 88px);
+    font-weight: 300;
+    color: var(--gold-pale);
+    line-height: 1;
+    letter-spacing: 0.04em;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+
+  .hero-brand strong {
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: clamp(11px, 1.5vw, 13px);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 16px;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-desc {
+    max-width: 480px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-light);
+    margin-top: 32px;
+    font-weight: 300;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 12px 28px;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .btn-ghost {
+    display: inline-block;
+    padding: 12px 28px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { background: rgba(200,169,110,0.1); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    animation: fadeUp 1s 1s ease both;
+  }
+  .scroll-hint span { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+  .scroll-arrow { width: 1px; height: 32px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 1.8s infinite; }
+
+  /* ── SECTION WRAPPER ── */
+  .section { padding: 80px 24px; max-width: 960px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .section-title strong { font-weight: 600; }
+  .section-body {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #4A5A6A;
+    max-width: 600px;
+    font-weight: 300;
+  }
+
+  hr.gold-rule {
+    border: none;
+    border-top: 1px solid rgba(200,169,110,0.25);
+    margin: 0;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 48px;
+    align-items: start;
+  }
+  @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+  .about-stat {
+    border-top: 1px solid rgba(200,169,110,0.3);
+    padding-top: 20px;
+  }
+  .about-stat .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .about-stat .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .equipment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .equip-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: #4A5A6A;
+    font-weight: 400;
+  }
+  .equip-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ── SERVICES ── */
+  .services-bg { background: var(--navy); }
+  .services-bg .section-title, .services-bg .section-eyebrow { color: var(--gold); }
+  .services-bg .section-body { color: var(--muted); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: rgba(200,169,110,0.15);
+    border: 1px solid rgba(200,169,110,0.15);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 48px;
+  }
+
+  .service-card {
+    background: var(--navy-mid);
+    padding: 32px 28px;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .service-card:hover { background: var(--navy-light); }
+
+  .service-icon {
+    width: 36px; height: 36px;
+    margin-bottom: 18px;
+  }
+  .service-icon svg { width: 100%; height: 100%; }
+
+  .service-cat {
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--gold-pale);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .service-desc {
+    font-size: 12.5px;
+    line-height: 1.75;
+    color: var(--muted);
+    font-weight: 300;
+  }
+  .service-items {
+    list-style: none;
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .service-items li {
+    font-size: 11.5px;
+    color: #7A9AAB;
+    padding-left: 14px;
+    position: relative;
+  }
+  .service-items li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 10px;
+  }
+
+  /* ── WHO WE SERVE ── */
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 48px;
+  }
+  .client-pill {
+    border: 1px solid rgba(200,169,110,0.3);
+    border-radius: 4px;
+    padding: 20px 20px;
+    text-align: center;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .client-pill:hover { border-color: var(--gold); background: rgba(200,169,110,0.04); }
+  .client-pill .pill-icon {
+    font-size: 22px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .client-pill .pill-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .client-pill .pill-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── BRANDS ── */
+  .brands-strip {
+    background: var(--gold-pale);
+    padding: 64px 24px;
+  }
+  .brands-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 620px) { .brands-inner { grid-template-columns: 1fr; } }
+
+  .brand-block {
+    background: var(--white);
+    border-radius: 4px;
+    padding: 32px;
+    border-left: 3px solid var(--gold);
+  }
+  .brand-block .b-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .brand-block .b-tagline {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .brand-block .b-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #5A6A7A;
+    font-weight: 300;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: var(--navy);
+    padding: 80px 24px;
+    text-align: center;
+  }
+  .contact-inner { max-width: 560px; margin: 0 auto; }
+  .contact-section .section-eyebrow { color: var(--gold); display: block; margin-bottom: 12px; }
+  .contact-section .section-title { color: var(--gold-pale); margin-bottom: 12px; }
+  .contact-section .section-body { color: var(--muted); margin: 0 auto 40px; }
+
+  .contact-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    text-align: left;
+    margin-bottom: 40px;
+  }
+  .contact-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(200,169,110,0.2);
+    border-radius: 4px;
+    padding: 20px 20px;
+  }
+  .contact-card .cc-label {
+    font-size: 8.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .contact-card .cc-value {
+    font-size: 13px;
+    color: var(--gold-pale);
+    word-break: break-all;
+  }
+  .contact-card a { color: var(--gold-pale); text-decoration: none; }
+  .contact-card a:hover { color: var(--gold); }
+
+  .wa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #25D366;
+    color: white;
+    padding: 14px 32px;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .wa-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #081018;
+    padding: 28px 24px;
+    text-align: center;
+    font-size: 11px;
+    color: #3A4A5A;
+    letter-spacing: 0.08em;
+  }
+  footer span { color: var(--gold); opacity: 0.6; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; } 50% { opacity: 1; }
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    background: rgba(13,27,42,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(200,169,110,0.1);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  @media (max-width: 560px) { .nav-links { display: none; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Envejo</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#brands">Our Brands</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-geo" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="300" cy="300" r="280" stroke-width="0.5"/>
+    <circle cx="300" cy="300" r="200" stroke-width="0.5"/>
+    <circle cx="300" cy="300" r="120" stroke-width="0.5"/>
+    <circle cx="300" cy="300" r="40" stroke-width="1"/>
+    <line x1="20" y1="300" x2="580" y2="300" stroke-width="0.5"/>
+    <line x1="300" y1="20" x2="300" y2="580" stroke-width="0.5"/>
+    <line x1="102" y1="102" x2="498" y2="498" stroke-width="0.3"/>
+    <line x1="498" y1="102" x2="102" y2="498" stroke-width="0.3"/>
+    <circle cx="300" cy="300" r="5" fill="#C8A96E" opacity="0.6"/>
+  </svg>
+
+  <p class="hero-eyebrow">Chennai, Tamil Nadu · Est. 2024</p>
+  <h1 class="hero-brand"><strong>Envejo</strong> Design Hub</h1>
+  <p class="hero-sub">Design · Fabrication · Education · Brand Identity</p>
+  <p class="hero-desc">A hybrid creative studio and micro-manufacturing operation — where ideas become physical realities. We design, fabricate, and deliver for schools, businesses, and brands across India.</p>
+  <div class="hero-cta">
+    <a href="#services" class="btn-primary">Explore Services</a>
+    <a href="#contact" class="btn-ghost">Get in Touch</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <p class="section-eyebrow">About the Studio</p>
+  <h2 class="section-title">We design it.<br><strong>We make it.</strong></h2>
+  <p class="section-body">Envejo Design Hub is a Chennai-based creative studio with an in-house fabrication lab. Unlike agencies that outsource production, we design and physically manufacture everything — giving clients faster turnaround, tighter quality control, and genuinely custom outcomes.</p>
+
+  <div class="about-grid">
+    <div>
+      <div class="about-stat">
+        <div class="num">2</div>
+        <div class="stat-label">Brand verticals — Design & STEM Education</div>
+      </div>
+      <div class="about-stat" style="margin-top:24px;">
+        <div class="num">6+</div>
+        <div class="stat-label">In-house fabrication machines</div>
+      </div>
+      <div class="about-stat" style="margin-top:24px;">
+        <div class="num">B2B</div>
+        <div class="stat-label">Schools, institutions, and businesses</div>
+      </div>
+    </div>
+
+    <div>
+      <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">In-House Equipment</p>
+      <div class="equipment-list">
+        <div class="equip-item"><div class="equip-dot"></div>Laser Cutter &amp; Engraver</div>
+        <div class="equip-item"><div class="equip-dot"></div>Cricut Cutting Machine</div>
+        <div class="equip-item"><div class="equip-dot"></div>3D Printer</div>
+        <div class="equip-item"><div class="equip-dot"></div>Sublimation Printer</div>
+        <div class="equip-item"><div class="equip-dot"></div>Inkjet &amp; LaserJet Printers</div>
+        <div class="equip-item"><div class="equip-dot"></div>Badge Making Machine</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="gold-rule" />
+
+<!-- SERVICES -->
+<section class="services-bg" id="services">
+  <div class="section" style="max-width:1100px;">
+    <p class="section-eyebrow">What We Do</p>
+    <h2 class="section-title">Our <strong>Services</strong></h2>
+    <p class="section-body">End-to-end creative and fabrication services — from concept to physical product. Every item designed in-house, every product made in-house.</p>
+
+    <div class="services-grid">
+
+      <!-- 1 -->
+      <div class="service-card">
+        <p class="service-cat">Branding &amp; Identity</p>
+        <h3 class="service-name">Brand Identity Design</h3>
+        <p class="service-desc">Complete visual identity systems for schools, startups, and businesses.</p>
+        <ul class="service-items">
+          <li>Logo design &amp; brand guidelines</li>
+          <li>School &amp; institutional branding</li>
+          <li>Mascot &amp; character illustration</li>
+          <li>Colour palette &amp; typography systems</li>
+          <li>Stationery &amp; business card design</li>
+        </ul>
+      </div>
+
+      <!-- 2 -->
+      <div class="service-card">
+        <p class="service-cat">Laser Fabrication</p>
+        <h3 class="service-name">Laser Cutting &amp; Engraving</h3>
+        <p class="service-desc">Precision-cut and engraved products on wood, acrylic, leather, and more.</p>
+        <ul class="service-items">
+          <li>Custom name plates &amp; signage</li>
+          <li>Trophy &amp; award plaques</li>
+          <li>Personalised gifts &amp; keepsakes</li>
+          <li>School display boards &amp; labels</li>
+          <li>Decorative panels &amp; cut-outs</li>
+        </ul>
+      </div>
+
+      <!-- 3 -->
+      <div class="service-card">
+        <p class="service-cat">3D Fabrication</p>
+        <h3 class="service-name">3D Printing &amp; Prototyping</h3>
+        <p class="service-desc">From prototypes to classroom models to display props — printed in-house.</p>
+        <ul class="service-items">
+          <li>STEM &amp; science model printing</li>
+          <li>Custom props &amp; display pieces</li>
+          <li>Product prototypes</li>
+          <li>Architectural &amp; educational models</li>
+        </ul>
+      </div>
+
+      <!-- 4 -->
+      <div class="service-card">
+        <p class="service-cat">Print &amp; Sublimation</p>
+        <h3 class="service-name">Custom Print Products</h3>
+        <p class="service-desc">Full-colour printing on fabric, hard surfaces, paper, and promotional items.</p>
+        <ul class="service-items">
+          <li>Sublimation mugs, plates &amp; tiles</li>
+          <li>Printed T-shirts &amp; uniforms</li>
+          <li>Banners, flex boards &amp; posters</li>
+          <li>Custom notebooks &amp; diaries</li>
+          <li>Stickers, ID cards &amp; badges</li>
+        </ul>
+      </div>
+
+      <!-- 5 -->
+      <div class="service-card">
+        <p class="service-cat">School Environments</p>
+        <h3 class="service-name">Classroom &amp; Campus Design</h3>
+        <p class="service-desc">Transforming school spaces into engaging, themed learning environments.</p>
+        <ul class="service-items">
+          <li>Wall murals &amp; classroom illustrations</li>
+          <li>Play area &amp; activity zone design</li>
+          <li>Themed classroom makeovers (10+ themes)</li>
+          <li>STEM lab setup &amp; visual design</li>
+          <li>Display boards &amp; learning corners</li>
+        </ul>
+      </div>
+
+      <!-- 6 -->
+      <div class="service-card">
+        <p class="service-cat">Vinyl &amp; Cricut</p>
+        <h3 class="service-name">Vinyl Cutting &amp; Decals</h3>
+        <p class="service-desc">Precision die-cut vinyl for walls, vehicles, windows, and surfaces.</p>
+        <ul class="service-items">
+          <li>Wall decals &amp; classroom stickers</li>
+          <li>Vehicle &amp; glass decals</li>
+          <li>Heat-transfer vinyl for garments</li>
+          <li>Iron-on labels &amp; patches</li>
+        </ul>
+      </div>
+
+      <!-- 7 -->
+      <div class="service-card">
+        <p class="service-cat">Education Kits</p>
+        <h3 class="service-name">STEM &amp; Entrepreneurship Kits</h3>
+        <p class="service-desc">Packaged learning kits for schools — designed, sourced, and assembled in-house under Dejo Labs.</p>
+        <ul class="service-items">
+          <li>Robotics &amp; electronics kits (Grades 3–12)</li>
+          <li>Entrepreneurship activity kits (KG–12)</li>
+          <li>100+ kit catalogue across categories</li>
+          <li>Curriculum-aligned (CBSE / ICSE / State)</li>
+          <li>Teacher guides &amp; worksheets included</li>
+        </ul>
+      </div>
+
+      <!-- 8 -->
+      <div class="service-card">
+        <p class="service-cat">School Programs</p>
+        <h3 class="service-name">Envejo Entrepreneurship Lab</h3>
+        <p class="service-desc">A 12-week curriculum program for schools covering ideation to Market Day pitching — KG to Grade 12.</p>
+        <ul class="service-items">
+          <li>Grade-wise worksheets &amp; activities</li>
+          <li>Branding, finance &amp; pitching modules</li>
+          <li>Live Market Day event facilitation</li>
+          <li>Teacher training &amp; program guides</li>
+          <li>Certificates &amp; printed materials</li>
+        </ul>
+      </div>
+
+      <!-- 9 -->
+      <div class="service-card">
+        <p class="service-cat">Gifts &amp; Merchandise</p>
+        <h3 class="service-name">Corporate &amp; School Gifting</h3>
+        <p class="service-desc">Curated, custom-made gift sets for schools, events, and corporate clients.</p>
+        <ul class="service-items">
+          <li>Teacher appreciation gift sets</li>
+          <li>Student achievement packs</li>
+          <li>Graduation &amp; farewell kits</li>
+          <li>Branded merchandise for events</li>
+          <li>Bulk customisation available</li>
+        </ul>
+      </div>
+
+      <!-- 10 -->
+      <div class="service-card">
+        <p class="service-cat">Print Design</p>
+        <h3 class="service-name">Educational Print Materials</h3>
+        <p class="service-desc">Beautifully designed printable and printed learning resources for classrooms.</p>
+        <ul class="service-items">
+          <li>Alphabet &amp; number flashcard sets</li>
+          <li>Origami &amp; activity printables</li>
+          <li>Classroom charts &amp; infographics</li>
+          <li>Grade-wise worksheet packs</li>
+          <li>Tamil &amp; English bilingual materials</li>
+        </ul>
+      </div>
+
+      <!-- 11 -->
+      <div class="service-card">
+        <p class="service-cat">Digital Design</p>
+        <h3 class="service-name">Presentations &amp; Digital Assets</h3>
+        <p class="service-desc">Professional decks, proposals, and digital content for schools and businesses.</p>
+        <ul class="service-items">
+          <li>School sales &amp; pitch presentations</li>
+          <li>Program proposal decks</li>
+          <li>Social media graphics</li>
+          <li>Digital brochures &amp; catalogues</li>
+        </ul>
+      </div>
+
+      <!-- 12 -->
+      <div class="service-card">
+        <p class="service-cat">Subscription Plans</p>
+        <h3 class="service-name">School Design Retainer</h3>
+        <p class="service-desc">Monthly and termly subscription packages for ongoing school design and printing needs.</p>
+        <ul class="service-items">
+          <li>Monthly print &amp; design quota</li>
+          <li>Activity kit delivery per term</li>
+          <li>Priority turnaround</li>
+          <li>Dedicated school account support</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section class="section" id="clients">
+  <p class="section-eyebrow">Who We Serve</p>
+  <h2 class="section-title">Built for <strong>Educators &amp; Businesses</strong></h2>
+  <p class="section-body">We work with institutions and brands at every scale — from single classrooms to multi-campus schools and corporate clients.</p>
+
+  <div class="clients-grid">
+    <div class="client-pill">
+      <span class="pill-icon">🏫</span>
+      <div class="pill-name">Schools &amp; Institutions</div>
+      <div class="pill-desc">KG to Grade 12, CBSE, ICSE, State Board</div>
+    </div>
+    <div class="client-pill">
+      <span class="pill-icon">👶</span>
+      <div class="pill-name">Kindergartens &amp; Preschools</div>
+      <div class="pill-desc">Play areas, classroom design, early learning kits</div>
+    </div>
+    <div class="client-pill">
+      <span class="pill-icon">🏢</span>
+      <div class="pill-name">Corporates &amp; Startups</div>
+      <div class="pill-desc">Branding, gifting, printed merchandise</div>
+    </div>
+    <div class="client-pill">
+      <span class="pill-icon">🎓</span>
+      <div class="pill-name">EdTech &amp; Training Centres</div>
+      <div class="pill-desc">Curriculum materials, kits, program design</div>
+    </div>
+    <div class="client-pill">
+      <span class="pill-icon">🛍️</span>
+      <div class="pill-name">Retail &amp; Events</div>
+      <div class="pill-desc">Custom print, decals, display &amp; branding</div>
+    </div>
+    <div class="client-pill">
+      <span class="pill-icon">🧑‍🎨</span>
+      <div class="pill-name">Individual Creators</div>
+      <div class="pill-desc">Personalised gifts, stickers, printed keepsakes</div>
+    </div>
+  </div>
+</section>
+
+<hr class="gold-rule" />
+
+<!-- BRANDS -->
+<section class="brands-strip" id="brands">
+  <div class="brands-inner">
+    <div class="brand-block">
+      <div class="b-name">Envejo Design Hub</div>
+      <div class="b-tagline">Design &amp; Fabrication Studio</div>
+      <p class="b-desc">Our flagship brand covering all creative, print, fabrication, and branding services. From classroom murals and laser-engraved trophies to corporate gifting and school identity design — Envejo delivers design that's made, not just imagined.</p>
+    </div>
+    <div class="brand-block">
+      <div class="b-name">Dejo Labs</div>
+      <div class="b-tagline">STEM &amp; Entrepreneurship Education</div>
+      <p class="b-desc">Our education sub-brand producing hands-on STEM and entrepreneurship kits for Indian schools. Curriculum-aligned, locally sourced, and teacher-ready. Dejo Labs targets a 100-kit pilot year with a phased multi-school rollout through partner institutions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <span class="section-eyebrow">Get in Touch</span>
+    <h2 class="section-title">Let's Build<br><strong>Something Together</strong></h2>
+    <p class="section-body">Reach out on WhatsApp for the fastest response. We serve clients across Chennai and across India for shipping-ready products.</p>
+
+    <div class="contact-cards">
+      <div class="contact-card">
+        <div class="cc-label">WhatsApp / Phone</div>
+        <div class="cc-value"><a href="tel:+919800000000">+91 98000 00000</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="cc-label">Email</div>
+        <div class="cc-value"><a href="mailto:hello@envejodesign.in">hello@envejodesign.in</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="cc-label">Website</div>
+        <div class="cc-value"><a href="https://www.envejodesign.in" target="_blank">www.envejodesign.in</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="cc-label">Location</div>
+        <div class="cc-value">Chennai, Tamil Nadu, India</div>
+      </div>
+    </div>
+
+    <a href="https://wa.me/919800000000?text=Hi%20Envejo%20Design%20Hub!%20I%27d%20like%20to%20know%20more%20about%20your%20services." class="wa-btn" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Message on WhatsApp
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <span>Envejo Design Hub</span> · Chennai, Tamil Nadu · All rights reserved</p>
+</footer>
+
+</body>
+</html>
